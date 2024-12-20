@@ -47,10 +47,8 @@ class AllSolutions {
             allSolutionsClassified.add(mutableListOf())
             for (j in 0 until allSolutions[i].size){
                 if(allSolutions[i][j]==startStation){
-                    //allSolutionsClassified.add(mutableListOf())                                           5
                     allSolutionsClassified[allSolutionsClassified.lastIndex].addAll(allSolutions[i].subList(j,allSolutions[i].indexOf(arrivalStation)+1))
                     allSolutions[i][allSolutions[i].indexOf(arrivalStation)]=""
-                    //println(allSolutionsClassified)
                 }
 
             }
@@ -62,11 +60,9 @@ class AllSolutions {
         for(i in 0 until allSolutionsClassified.size){
             for(j in 0 until allSolutionsClassified[i].size){
                 if(allSolutionsClassified[i][j]==startStation){
-                    //allSolutionsClassified.add(mutableListOf())                                           5
                     separatedSolutions.add(mutableListOf())
                     separatedSolutions[separatedSolutions.lastIndex].addAll(allSolutionsClassified[i].subList(j,allSolutionsClassified[i].indexOf(arrivalStation)+1))
                     allSolutionsClassified[i][allSolutionsClassified[i].indexOf(arrivalStation)]=""
-                    //println(allSolutionsClassified)
                 }
             }
         }
@@ -122,13 +118,13 @@ class AllSolutions {
                 minIndex=i
             }
             println("Total Number of stations= $totalStationNumber")
-            println("Estimated Time: ~${totalStationNumber*2} minutes" )
             when (totalStationNumber) {
-                in 1..9 -> println ("ticket= 8 EGP")
-                in 10..16 -> println ("ticket= 10 EGP")
-                in 17..23 -> println ("ticket= 15 EGP")
-                else -> println("ticket= 20 EGP")
+                in 1..9 -> println ("Ticket Price= 8 EGP ( 4 EGP for people at age of 60 or older and military / 5 EGP for Disability)")
+                in 10..16 -> println ("Ticket Price= 10 EGP ( 5 EGP for people at age of 60 or older and military / 5 EGP for Disability)")
+                in 17..23 -> println ("Ticket Price= 15 EGP ( 8 EGP for people at age of 60 or older and military / 5 EGP for Disability)")
+                else -> println("Ticket Price= 20 EGP ( 10 EGP for people at age of 60 or older and military / 5 EGP for Disability)")
             }
+            println("Estimated Time: ~${totalStationNumber*2} minutes" )
         }
     }
 
@@ -154,6 +150,7 @@ class AllSolutions {
                 val startIndex=currentLine.indexOf(startStation)
                 val endIndex=currentLine.indexOf(arrivalStation)
                 val numberOfStations= abs(endIndex - startIndex)
+                println("number of stations= $numberOfStations")
                 if (endIndex > startIndex) {
                     println("Line ${getLineNumber(currentLine)} -> direction: ${currentLine.last()}")
                     println("stations: ${currentLine.slice(startIndex..endIndex)} ")
@@ -162,18 +159,17 @@ class AllSolutions {
                     println("Line ${getLineNumber(currentLine)} -> direction: ${currentLine.first()}")
                     println("stations: ${currentLine.slice(endIndex..startIndex).reversed()} ")
                 }
-                println("number of stations= $numberOfStations")
                 totalStationNumber+=numberOfStations
                 previousLine=currentLine
             }
             println("Total Number of stations= $totalStationNumber")
-            println("Estimated Time: ~${totalStationNumber*2} minutes" )
             when (totalStationNumber) {
-                in 1..9 -> println ("ticket= 8 EGP")
-                in 10..16 -> println ("ticket= 10 EGP")
-                in 17..23 -> println ("ticket= 15 EGP")
-                else -> println("ticket= 20 EGP")
+                in 1..9 -> println ("Ticket Price= 8 EGP ( 4 EGP for people at age of 60 or older and military / 5 EGP for Disability)")
+                in 10..16 -> println ("Ticket Price= 10 EGP ( 5 EGP for people at age of 60 or older and military / 5 EGP for Disability)")
+                in 17..23 -> println ("Ticket Price= 15 EGP ( 8 EGP for people at age of 60 or older and military / 5 EGP for Disability)")
+                else -> println("Ticket Price= 20 EGP ( 10 EGP for people at age of 60 or older and military / 5 EGP for Disability)")
             }
+        println("Estimated Time: ~${totalStationNumber*2} minutes" )
     }
 
     fun changeLine(previousLine: List<String>, currentStation:String,nextStation: String):List<String>{
